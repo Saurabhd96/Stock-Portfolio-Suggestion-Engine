@@ -29,7 +29,7 @@ def one_investment_strategy(data, amount, strategy):
         stock = yf.Ticker(stock_item['symbol'])
         if strategy == 'Index Investing':
             current_price = stock.info['navPrice']
-        else:    
+        else:
             current_price = stock.info['currentPrice']
         print("Current value of", stock_item['name'], "is", current_price)
         info.append(stock_item['name'])
@@ -51,7 +51,7 @@ def one_investment_strategy(data, amount, strategy):
         s = s + all_stock_portfolio[0][index] + all_stock_portfolio[1][index] + \
             all_stock_portfolio[2][index] + all_stock_portfolio[3][index]
         total_portfolio.append(s)
-    
+
     print(total_portfolio)
     current_time = datetime.now()
     current_day = current_time.strftime('%m-%d-%Y')
@@ -92,7 +92,7 @@ def two_investment_strategy(data, amount, strategy1, strategy2):
         stock = yf.Ticker(stock_item['symbol'])
         if strategy1 == 'Index Investing':
             current_price = stock.info['navPrice']
-        else:    
+        else:
             current_price = stock.info['currentPrice']
         print("Current value of", stock_item['name'], "is", current_price)
         info.append(stock_item['name'])
@@ -114,7 +114,7 @@ def two_investment_strategy(data, amount, strategy1, strategy2):
         stock = yf.Ticker(stock_item['symbol'])
         if strategy2 == 'Index Investing':
             current_price = stock.info['navPrice']
-        else:    
+        else:
             current_price = stock.info['currentPrice']
         print("Current value of", stock_item['name'], "is", current_price)
         info.append(stock_item['name'])
@@ -177,7 +177,7 @@ def result():
         data = json.load(f)
     print(data)
     l = strategy.split()
-    
+
     if len(strategy.split()) == 2:
         info = one_investment_strategy(data, name, strategy)
         stock1 = info[0][0]
@@ -228,4 +228,4 @@ def result():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
