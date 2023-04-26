@@ -6,5 +6,5 @@ User will Input dollar amount to invest in USD (Minimum is $5000 USD). The Stock
   - Ensure that Python (version 3.6 or 3.7) and pip are installed in the system.
   - Ensure that there is a strong internet connection as the application needs yfinance api to get information about stocks.
   - pip3 install -r requirements.txt
-  - python3 app.py
+  - python3 -m flask run
   - Navigate to http://127.0.0.1:5000/
