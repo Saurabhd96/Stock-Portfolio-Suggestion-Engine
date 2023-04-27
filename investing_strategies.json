@@ -11,8 +11,8 @@
       "percentage": "10"
     },
     {
-      "symbol": "WY",
-      "name": "Weyerhaeuser Company",
+      "symbol": "ADBE",
+      "name": "Adobe Inc",
       "percentage": "10"
     },
     {
@@ -23,8 +23,8 @@
   ],
   "Growth Investing": [
     {
-      "symbol": "WOOF",
-      "name": "Petco Health and Wellness Co. Inc.",
+      "symbol": "MELI",
+      "name": "MercadoLibre Inc",
       "percentage": "25"
     },
     {
@@ -45,13 +45,13 @@
   ],
   "Index Investing": [
     {
-      "symbol": "DJD",
-      "name": "Invesco Dow Jones Industrial Average Dividend ETF ",
+      "symbol": "IXUS",
+      "name": "iShares Core MSCI Total Intl Stk",
       "percentage": "35"
     },
     {
-      "symbol": "VDC",
-      "name": "Vanguard Consumer Staples Index Fund ETF",
+      "symbol": "VTI",
+      "name": "Vanguard Total Stock Market ETF",
       "percentage": "30"
     },
     {
@@ -69,44 +69,44 @@
     {
       "symbol": "UNF",
       "name": "UniFirst Corp",
-      "percentage": "35"
+      "percentage": "30"
     },
     {
       "symbol": "CMCSA",
       "name": "Comcast Corporation  ",
-      "percentage": "30"
+      "percentage": "25"
     },
     {
       "symbol": "BK",
       "name": "Bank of New York Mellon  ",
-      "percentage": "25"
+      "percentage": "30"
     },
     {
       "symbol": "DIS",
       "name": "Walt Disney Co.",
-      "percentage": "10"
+      "percentage": "15"
     }
   ],
   "Value Investing": [
     {
       "symbol": "BAC",
       "name": "Bank of America Corporation",
-      "percentage": "35"
+      "percentage": "30"
     },
     {
       "symbol": "KHC",
       "name": "The Kraft Heinz Company",
-      "percentage": "25"
+      "percentage": "20"
     },
     {
       "symbol": "VZ",
       "name": "Verizon Communications Inc.",
-      "percentage": "20"
+      "percentage": "25"
     },
     {
       "symbol": "DVA",
       "name": "DaVita Inc.",
-      "percentage": "20"
+      "percentage": "25"
     }
   ]
 }
