@@ -6,8 +6,8 @@
       "percentage": "40"
     },
     {
-      "symbol": "UNFI",
-      "name": "United Natural Foods, Inc.",
+      "symbol": "MSFT",
+      "name": "Microsoft Corporation",
       "percentage": "10"
     },
     {
@@ -94,8 +94,8 @@
       "percentage": "30"
     },
     {
-      "symbol": "KHC",
-      "name": "The Kraft Heinz Company",
+      "symbol": "PFE",
+      "name": "Pfizer Inc.",
       "percentage": "20"
     },
     {
@@ -104,8 +104,8 @@
       "percentage": "25"
     },
     {
-      "symbol": "DVA",
-      "name": "DaVita Inc.",
+      "symbol": "TMUS",
+      "name": "T-Mobile US, Inc.",
       "percentage": "25"
     }
   ]

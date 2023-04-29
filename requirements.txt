@@ -1,5 +1,4 @@
 flask
 yfinance
-seaborn
 matplotlib
 json
