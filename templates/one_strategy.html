@@ -4,29 +4,38 @@
         <link rel="stylesheet" type="text/css" href="../static/index.css">
     </head>
     <body>
+        <div class="navbar">
+            <a class="navbar-anchor" href="{{ url_for('home') }}">STOCK PORTFOLIO SUGGESTION ENGINE</a>
+        </div>      
         <form class="grid">
             <h2>
-                <center>Current value of Portfolio : {{ name }} </center> <br />
-                <center>Selected Investment Strategy/Strategies : {{ strategy }} </center> <br />
-                <center>Stocks Chosen : {{ stock1 }}, {{ stock2 }},{{ stock3 }}, {{ stock4 }} </center> <br />
+                <center>Current Value of Portfolio : {{ name }} </center> <br />
+                <center>Selected Investment Strategy : {{ strategy }} </center> <br /> <br/>
+                <center><u>{{ stock1 }}</u></center> <br />
                 <p>
-                <center>Current value of 1 share of {{ stock1 }} is {{stock1_price }} </center> <br/>
-                <center>Invested money in {{ stock1 }} is {{ stock1_money }} </center> <br />
+                <center>Current share value: {{stock1_price }} </center> <br/>
+                <center>Amount Invested: {{ stock1_money }} </center> <br />
                 </p>
+                <br/>
+                <center><u>{{ stock2 }}</u></center> <br />
                 <p>
-                <center>Current value of 1 share of {{ stock2 }} is {{stock2_price }} </center> <br/>
-                <center>Invested money in {{ stock2 }} is {{ stock2_money }} </center> <br />
+                <center>Current share value: {{stock2_price }} </center> <br/>
+                <center>Amount Invested: {{ stock2_money }} </center> <br />
                 </p>
+                <br/>
+                <center><u>{{ stock3 }}</u></center> <br />
                 <p>
-                <center>Current value of 1 share of {{ stock3 }} is {{stock3_price }}</center><br/>
-                <center>Invested money in {{ stock3 }} is {{ stock3_money }} </center> <br />
+                <center>Current share value: {{stock3_price }} </center> <br/>
+                <center>Amount Invested: {{ stock3_money }} </center> <br />
                 </p>
+                <br/>
+                <center><u>{{ stock4 }}</u></center> <br />
                 <p>
-                <center>Current value of 1 share of {{ stock4 }} is {{stock4_price }}</center><br/>
-                <center>Invested money in {{ stock4 }} is {{ stock4_money }} </center> <br />
+                <center>Current share value: {{stock4_price }} </center> <br/>
+                <center>Amount Invested: {{ stock4_money }} </center> <br />
                 </p>
                 <center><img src={{ url_pie }} alt="Image not found"/> </center> <br />
-                <center><img src={{ url}} alt="Image not found"/> </center> <br />
+                <center><img src={{ url }} alt="Image not found"/> </center> <br />
             </h2>
         </form>
     </body>

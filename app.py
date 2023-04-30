@@ -24,13 +24,11 @@ def one_investment_strategy(data, amount, strategy):
         info = []
         stock_portfolio = []
         money_invested = (int(stock_item['percentage'])/100)*amount_to_invest
-        print("Money invested in", stock_item['name'], "is", money_invested)
         stock = yf.Ticker(stock_item['symbol'])
         if strategy == 'Index Investing':
             current_price = stock.info['navPrice']
         else:
             current_price = stock.info['currentPrice']
-        print("Current value of", stock_item['name'], "is", current_price)
         info.append(stock_item['name'])
         info.append(money_invested)
         info.append(current_price)
@@ -43,7 +41,6 @@ def one_investment_strategy(data, amount, strategy):
         all_stock_portfolio.append(stock_portfolio)
         current_value_of_investment += (current_price*number_of_shares)
 
-    print(all_stock_portfolio)
     total_portfolio = []
     for index in range(len(all_stock_portfolio[0])):
         s = 0
@@ -51,21 +48,17 @@ def one_investment_strategy(data, amount, strategy):
             all_stock_portfolio[2][index] + all_stock_portfolio[3][index]
         total_portfolio.append(s)
 
-    print(total_portfolio)
     current_time = datetime.now()
     current_day = current_time.strftime('%m-%d-%Y')
     d = str(current_day)
     d1 = datetime.strptime(d, '%m-%d-%Y')
     dates = [(d1-timedelta(days=i)).strftime('%m-%d-%Y')
              for i in range(5, 0, -1)]
-    print(dates)
-    print(total_portfolio)
-    print(current_value_of_investment)
     plt.clf()
     plt.plot(dates, total_portfolio)
     plt.xlabel("Last 5 days")
-    plt.ylabel("Amount in USD")
-    plt.title("Overall Portfolio Trend")
+    plt.ylabel("Amount (USD)")
+    plt.title("Weekly Portfolio Trend")
     plt.savefig('static/images/investment-strategy.jpeg')
     pie_one_investment = np.array([])
     pie_labels = []
@@ -87,13 +80,11 @@ def two_investment_strategy(data, amount, strategy1, strategy2):
         info = []
         stock_portfolio = []
         money_invested = (int(stock_item['percentage'])/100)*amount_to_invest
-        print("Money invested in", stock_item['name'], "is", money_invested)
         stock = yf.Ticker(stock_item['symbol'])
         if strategy1 == 'Index Investing':
             current_price = stock.info['navPrice']
         else:
             current_price = stock.info['currentPrice']
-        print("Current value of", stock_item['name'], "is", current_price)
         info.append(stock_item['name'])
         info.append(money_invested)
         info.append(current_price)
@@ -109,13 +100,11 @@ def two_investment_strategy(data, amount, strategy1, strategy2):
         info = []
         stock_portfolio = []
         money_invested = (int(stock_item['percentage'])/100)*amount_to_invest
-        print("Money invested in", stock_item['name'], "is", money_invested)
         stock = yf.Ticker(stock_item['symbol'])
         if strategy2 == 'Index Investing':
             current_price = stock.info['navPrice']
         else:
             current_price = stock.info['currentPrice']
-        print("Current value of", stock_item['name'], "is", current_price)
         info.append(stock_item['name'])
         info.append(money_invested)
         info.append(current_price)
@@ -128,28 +117,25 @@ def two_investment_strategy(data, amount, strategy1, strategy2):
         all_stock_portfolio.append(stock_portfolio)
         current_value_of_investment += (current_price*number_of_shares)
 
-    print(all_stock_portfolio)
     total_portfolio = []
     for index in range(len(all_stock_portfolio[0])):
         s = 0
         s = s + all_stock_portfolio[0][index] + all_stock_portfolio[1][index] + \
             all_stock_portfolio[2][index] + all_stock_portfolio[3][index] + all_stock_portfolio[4][index] + all_stock_portfolio[5][index] + all_stock_portfolio[6][index] + all_stock_portfolio[7][index]
         total_portfolio.append(s)
-    print(total_portfolio)
+
     current_time = datetime.now()
     current_day = current_time.strftime('%m-%d-%Y')
     d = str(current_day)
     d1 = datetime.strptime(d, '%m-%d-%Y')
     dates = [(d1-timedelta(days=i)).strftime('%m-%d-%Y')
              for i in range(5, 0, -1)]
-    print(dates)
-    print(total_portfolio)
-    print(current_value_of_investment)
+
     plt.clf()
     plt.plot(dates, total_portfolio)
     plt.xlabel("Last 5 days")
-    plt.ylabel("Amount in USD")
-    plt.title("Overall Portfolio Trend")
+    plt.ylabel("Amount (USD)")
+    plt.title("Weekly Portfolio Trend")
     plt.savefig('static/images/two_investment-strategy.jpeg')
     pie_two_investment = np.array([])
     pie_labels = []
@@ -169,12 +155,11 @@ def two_investment_strategy(data, amount, strategy1, strategy2):
 @app.route('/result', methods=['POST', 'GET'])
 def result():
     output = request.form.to_dict()
-    print(output)
     name = output["name"]
     strategy = output["strategy"]
     with open('investing_strategies.json') as f:
         data = json.load(f)
-    print(data)
+
     l = strategy.split()
 
     if len(strategy.split()) == 2:

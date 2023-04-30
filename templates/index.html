@@ -3,22 +3,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../static/index.css">
   </head>
+
   <body>
+    <div class="navbar">
+      <a class="navbar-anchor" href="{{ url_for('home') }}">STOCK PORTFOLIO SUGGESTION ENGINE</a>
+    </div>
 
     <form class="grid" action="/result" method="POST">
-    <!-- 
-      {% if name %}
-      <center>
-        <h3 style="color: blue;" class="let_space">You will be investing {{name}} USD, Best of luck!</h3>
-      </center>
-
-      {% endif %} -->
-
       <label for="name">Enter amount to invest (USD):</label>
       <input type="number" id="name" name="name" min="5000" required>
 
-      <label for="strategy">Choose the strategy for investment:</label>
-      <select type="text" id="strategy" name="strategy" required>
+      <label for="strategy">Select the Investment Strategy:</label>
+      <select type="text" id="strategy" name="strategy">
         <option name='Ethical Investing' value='Ethical Investing'>Ethical Investing </option>
         <option name='Value Investing' value='Value Investing'>Value Investing </option>
         <option name='Growth Investing' value='Growth Investing'>Growth Investing </option>
@@ -35,10 +31,7 @@
         <option name='Growth and Index Investing' value='Growth Investing and Index Investing'>Growth Investing and Index Investing </option>
         <option name='Quality and Index Investing' value='Quality Investing and Index Investing'>Quality Investing and Index Investing </option>
       </select>
-      <center><input class="file_submit" type="Submit"></center>
+      <center><button class="button"> Get Investment Plan </button></center>
     </form>
-    <br>
-    <br>
-    <br>
   </body>
 </html>
