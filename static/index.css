@@ -71,11 +71,26 @@ option{
     color: #4CAF50;
 }
 
+.navbar-anchor:link {
+    text-decoration: underline;
+    color: #4CAF50;
+}
+
 .navbar-anchor:visited {
-    text-decoration: none;
+    text-decoration: underline;
+    color: #4CAF50;
+}
+
+.navbar-anchor:hover {
+    text-decoration: underline;
+    color: #4CAF50;
+}
+
+.navbar-anchor:active {
+    text-decoration: underline;
     color: #4CAF50;
 }
 
 hr {
-    border: 1px solid green;
+    border: 1px solid #4CAF50;
 }
