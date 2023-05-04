@@ -66,7 +66,7 @@ def one_investment_strategy(data, amount, strategy):
         pie_one_investment = np.append(pie_one_investment, int(stock_item['percentage']))
         pie_labels.append(stock_item['name'])
     plt.clf()
-    plt.title("Distribution of money towards each stock")
+    plt.title("Distribution of money for each stock")
     plt.pie(pie_one_investment, labels = pie_labels)
     plt.savefig('static/images/pie_chart-investment-strategy.jpeg')
     return necessary_info
@@ -146,7 +146,7 @@ def two_investment_strategy(data, amount, strategy1, strategy2):
         pie_two_investment = np.append(pie_two_investment, int(stock_item['percentage'])/2)
         pie_labels.append(stock_item['name'])
     plt.clf()
-    plt.title("Distribution of money towards each stock")
+    plt.title("Distribution of money for each stock")
     plt.pie(pie_two_investment, labels = pie_labels)
     plt.savefig('static/images/pie_chart-two-investment-strategy.jpeg')
     return necessary_info
@@ -176,9 +176,9 @@ def result():
         stock2_money= info[1][1]
         stock3_money = info[2][1]
         stock4_money = info[3][1]
-        return render_template('one_strategy.html', name=name, strategy=strategy, stock1 = stock1, stock2 = stock2, stock3 = stock3, 
-                               stock4 = stock4, stock1_price = stock1_price, stock2_price = stock2_price, stock3_price = stock3_price, 
-                               stock4_price = stock4_price, stock1_money = stock1_money, stock2_money = stock2_money, stock3_money = stock3_money, 
+        return render_template('one_strategy.html', name=name, strategy=strategy, stock1 = stock1, stock2 = stock2, stock3 = stock3,
+                               stock4 = stock4, stock1_price = stock1_price, stock2_price = stock2_price, stock3_price = stock3_price,
+                               stock4_price = stock4_price, stock1_money = stock1_money, stock2_money = stock2_money, stock3_money = stock3_money,
                                stock4_money = stock4_money, url='static/images/investment-strategy.jpeg', url_pie = 'static/images/pie_chart-investment-strategy.jpeg')
     else:
         amount = int(name)
@@ -211,11 +211,11 @@ def result():
         stock6_money= info[5][1]
         stock7_money = info[6][1]
         stock8_money = info[7][1]
-        return render_template('two_strategies.html', name=name, strategy1=strategy1, strategy2=strategy2, stock1=stock1, stock2=stock2, 
-                               stock3=stock3, stock4=stock4, stock5=stock5, stock6=stock6, stock7=stock7, stock8=stock8, 
-                               stock1_price=stock1_price, stock2_price=stock2_price, stock3_price=stock3_price, stock4_price=stock4_price, 
-                               stock5_price=stock5_price, stock6_price=stock6_price, stock7_price=stock7_price, stock8_price=stock8_price, 
-                               stock1_money=stock1_money, stock2_money=stock2_money, stock3_money=stock3_money, stock4_money=stock4_money, 
+        return render_template('two_strategies.html', name=name, strategy1=strategy1, strategy2=strategy2, stock1=stock1, stock2=stock2,
+                               stock3=stock3, stock4=stock4, stock5=stock5, stock6=stock6, stock7=stock7, stock8=stock8,
+                               stock1_price=stock1_price, stock2_price=stock2_price, stock3_price=stock3_price, stock4_price=stock4_price,
+                               stock5_price=stock5_price, stock6_price=stock6_price, stock7_price=stock7_price, stock8_price=stock8_price,
+                               stock1_money=stock1_money, stock2_money=stock2_money, stock3_money=stock3_money, stock4_money=stock4_money,
                                stock5_money=stock5_money, stock6_money=stock6_money, stock7_money=stock7_money, stock8_money=stock8_money,
                                url='static/images/two_investment-strategy.jpeg', url_pie = 'static/images/pie_chart-two-investment-strategy.jpeg')
 
