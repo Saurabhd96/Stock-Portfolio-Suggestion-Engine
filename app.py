@@ -1,4 +1,3 @@
-import time
 from datetime import datetime, timedelta
 from flask import Flask, render_template, request
 import json
@@ -16,140 +15,140 @@ def home():
 
 
 def one_investment_strategy(data, amount, strategy):
-    all_stock_portfolio = []
-    current_value_of_investment = 0
-    amount_to_invest = int(amount)
-    necessary_info = []
-    for stock_item in data[strategy]:
+    allStockPortfolio = []
+    currentInvestmentAmount = 0
+    investmentAmount = int(amount)
+    requiredInfo = []
+    for stockItem in data[strategy]:
         info = []
-        stock_portfolio = []
-        money_invested = (int(stock_item['percentage'])/100)*amount_to_invest
-        stock = yf.Ticker(stock_item['symbol'])
+        stockPortfolio = []
+        investedAmount = (int(stockItem['percentage']) / 100) * investmentAmount
+        stock = yf.Ticker(stockItem['symbol'])
         if strategy == 'Index Investing':
-            current_price = stock.info['navPrice']
+            currentStockPrice = stock.info['navPrice']
         else:
-            current_price = stock.info['currentPrice']
-        info.append(stock_item['name'])
-        info.append(money_invested)
-        info.append(current_price)
-        necessary_info.append(info)
-        stock = yf.Ticker(stock_item['symbol'])
+            currentStockPrice = stock.info['currentPrice']
+        info.append(stockItem['name'])
+        info.append(investedAmount)
+        info.append(currentStockPrice)
+        requiredInfo.append(info)
+        stock = yf.Ticker(stockItem['symbol'])
         hist = stock.history(period="5d")
-        number_of_shares = money_invested/current_price
+        numberShares = investedAmount / currentStockPrice
         for price in hist['Close']:
-            stock_portfolio.append(price*number_of_shares)
-        all_stock_portfolio.append(stock_portfolio)
-        current_value_of_investment += (current_price*number_of_shares)
+            stockPortfolio.append(price * numberShares)
+        allStockPortfolio.append(stockPortfolio)
+        currentInvestmentAmount += (currentStockPrice * numberShares)
 
-    total_portfolio = []
-    for index in range(len(all_stock_portfolio[0])):
+    totalPortfolio = []
+    for ind in range(len(allStockPortfolio[0])):
         s = 0
-        s = s + all_stock_portfolio[0][index] + all_stock_portfolio[1][index] + \
-            all_stock_portfolio[2][index] + all_stock_portfolio[3][index]
-        total_portfolio.append(s)
+        s = s + allStockPortfolio[0][ind] + allStockPortfolio[1][ind] + \
+            allStockPortfolio[2][ind] + allStockPortfolio[3][ind]
+        totalPortfolio.append(s)
 
-    current_time = datetime.now()
-    current_day = current_time.strftime('%m-%d-%Y')
-    d = str(current_day)
+    currentTime = datetime.now()
+    currentDay = currentTime.strftime('%m-%d-%Y')
+    d = str(currentDay)
     d1 = datetime.strptime(d, '%m-%d-%Y')
     dates = [(d1-timedelta(days=i)).strftime('%m-%d-%Y')
              for i in range(5, 0, -1)]
     plt.clf()
-    plt.plot(dates, total_portfolio)
+    plt.plot(dates, totalPortfolio)
     plt.xlabel("Last 5 days")
     plt.ylabel("Amount (USD)")
     plt.title("Weekly Portfolio Trend")
     plt.savefig('static/images/investment-strategy.jpeg')
     pie_one_investment = np.array([])
     pie_labels = []
-    for stock_item in data[strategy]:
-        pie_one_investment = np.append(pie_one_investment, int(stock_item['percentage']))
-        pie_labels.append(stock_item['name'])
+    for stockItem in data[strategy]:
+        pie_one_investment = np.append(pie_one_investment, int(stockItem['percentage']))
+        pie_labels.append(stockItem['name'])
     plt.clf()
     plt.title("Distribution of money for each stock")
     plt.pie(pie_one_investment, labels = pie_labels)
     plt.savefig('static/images/pie_chart-investment-strategy.jpeg')
-    return necessary_info
+    return requiredInfo
 
 def two_investment_strategy(data, amount, strategy1, strategy2):
-    all_stock_portfolio = []
-    current_value_of_investment = 0
-    amount_to_invest = int(int(amount)/2)
-    necessary_info = []
-    for stock_item in data[strategy1]:
+    allStockPortfolio = []
+    currentInvestmentAmount = 0
+    investmentAmount = int(int(amount) / 2)
+    requiredInfo = []
+    for stockItem in data[strategy1]:
         info = []
-        stock_portfolio = []
-        money_invested = (int(stock_item['percentage'])/100)*amount_to_invest
-        stock = yf.Ticker(stock_item['symbol'])
+        stockPortfolio = []
+        investedAmount = (int(stockItem['percentage']) / 100) * investmentAmount
+        stock = yf.Ticker(stockItem['symbol'])
         if strategy1 == 'Index Investing':
-            current_price = stock.info['navPrice']
+            currentStockPrice = stock.info['navPrice']
         else:
-            current_price = stock.info['currentPrice']
-        info.append(stock_item['name'])
-        info.append(money_invested)
-        info.append(current_price)
-        necessary_info.append(info)
-        stock = yf.Ticker(stock_item['symbol'])
+            currentStockPrice = stock.info['currentPrice']
+        info.append(stockItem['name'])
+        info.append(investedAmount)
+        info.append(currentStockPrice)
+        requiredInfo.append(info)
+        stock = yf.Ticker(stockItem['symbol'])
         hist = stock.history(period="5d")
-        number_of_shares = money_invested/current_price
+        numberShares = investedAmount / currentStockPrice
         for price in hist['Close']:
-            stock_portfolio.append(price*number_of_shares)
-        all_stock_portfolio.append(stock_portfolio)
-        current_value_of_investment += (current_price*number_of_shares)
-    for stock_item in data[strategy2]:
+            stockPortfolio.append(price * numberShares)
+        allStockPortfolio.append(stockPortfolio)
+        currentInvestmentAmount += (currentStockPrice * numberShares)
+    for stockItem in data[strategy2]:
         info = []
-        stock_portfolio = []
-        money_invested = (int(stock_item['percentage'])/100)*amount_to_invest
-        stock = yf.Ticker(stock_item['symbol'])
+        stockPortfolio = []
+        investedAmount = (int(stockItem['percentage']) / 100) * investmentAmount
+        stock = yf.Ticker(stockItem['symbol'])
         if strategy2 == 'Index Investing':
-            current_price = stock.info['navPrice']
+            currentStockPrice = stock.info['navPrice']
         else:
-            current_price = stock.info['currentPrice']
-        info.append(stock_item['name'])
-        info.append(money_invested)
-        info.append(current_price)
-        necessary_info.append(info)
-        stock = yf.Ticker(stock_item['symbol'])
+            currentStockPrice = stock.info['currentPrice']
+        info.append(stockItem['name'])
+        info.append(investedAmount)
+        info.append(currentStockPrice)
+        requiredInfo.append(info)
+        stock = yf.Ticker(stockItem['symbol'])
         hist = stock.history(period="5d")
-        number_of_shares = money_invested/current_price
+        numberShares = investedAmount / currentStockPrice
         for price in hist['Close']:
-            stock_portfolio.append(price*number_of_shares)
-        all_stock_portfolio.append(stock_portfolio)
-        current_value_of_investment += (current_price*number_of_shares)
+            stockPortfolio.append(price * numberShares)
+        allStockPortfolio.append(stockPortfolio)
+        currentInvestmentAmount += (currentStockPrice * numberShares)
 
-    total_portfolio = []
-    for index in range(len(all_stock_portfolio[0])):
+    totalPortfolio = []
+    for ind in range(len(allStockPortfolio[0])):
         s = 0
-        s = s + all_stock_portfolio[0][index] + all_stock_portfolio[1][index] + \
-            all_stock_portfolio[2][index] + all_stock_portfolio[3][index] + all_stock_portfolio[4][index] + all_stock_portfolio[5][index] + all_stock_portfolio[6][index] + all_stock_portfolio[7][index]
-        total_portfolio.append(s)
+        s = s + allStockPortfolio[0][ind] + allStockPortfolio[1][ind] + \
+            allStockPortfolio[2][ind] + allStockPortfolio[3][ind] + allStockPortfolio[4][ind] + allStockPortfolio[5][ind] + allStockPortfolio[6][ind] + allStockPortfolio[7][ind]
+        totalPortfolio.append(s)
 
-    current_time = datetime.now()
-    current_day = current_time.strftime('%m-%d-%Y')
-    d = str(current_day)
+    currentTime = datetime.now()
+    currentDay = currentTime.strftime('%m-%d-%Y')
+    d = str(currentDay)
     d1 = datetime.strptime(d, '%m-%d-%Y')
     dates = [(d1-timedelta(days=i)).strftime('%m-%d-%Y')
              for i in range(5, 0, -1)]
 
     plt.clf()
-    plt.plot(dates, total_portfolio)
+    plt.plot(dates, totalPortfolio)
     plt.xlabel("Last 5 days")
     plt.ylabel("Amount (USD)")
     plt.title("Weekly Portfolio Trend")
     plt.savefig('static/images/two_investment-strategy.jpeg')
     pie_two_investment = np.array([])
     pie_labels = []
-    for stock_item in data[strategy1]:
-        pie_two_investment = np.append(pie_two_investment, int(stock_item['percentage'])/2)
-        pie_labels.append(stock_item['name'])
-    for stock_item in data[strategy2]:
-        pie_two_investment = np.append(pie_two_investment, int(stock_item['percentage'])/2)
-        pie_labels.append(stock_item['name'])
+    for stockItem in data[strategy1]:
+        pie_two_investment = np.append(pie_two_investment, int(stockItem['percentage'])/2)
+        pie_labels.append(stockItem['name'])
+    for stockItem in data[strategy2]:
+        pie_two_investment = np.append(pie_two_investment, int(stockItem['percentage'])/2)
+        pie_labels.append(stockItem['name'])
     plt.clf()
     plt.title("Distribution of money for each stock")
     plt.pie(pie_two_investment, labels = pie_labels)
     plt.savefig('static/images/pie_chart-two-investment-strategy.jpeg')
-    return necessary_info
+    return requiredInfo
 
 
 @app.route('/result', methods=['POST', 'GET'])
@@ -176,10 +175,10 @@ def result():
         stock2_money= info[1][1]
         stock3_money = info[2][1]
         stock4_money = info[3][1]
-        return render_template('one_strategy.html', name=name, strategy=strategy, stock1 = stock1, stock2 = stock2, stock3 = stock3,
+        return render_template('one_strategy.html', name = name, strategy = strategy, stock1 = stock1, stock2 = stock2, stock3 = stock3,
                                stock4 = stock4, stock1_price = stock1_price, stock2_price = stock2_price, stock3_price = stock3_price,
                                stock4_price = stock4_price, stock1_money = stock1_money, stock2_money = stock2_money, stock3_money = stock3_money,
-                               stock4_money = stock4_money, url='static/images/investment-strategy.jpeg', url_pie = 'static/images/pie_chart-investment-strategy.jpeg')
+                               stock4_money = stock4_money, url = 'static/images/investment-strategy.jpeg', url_pie = 'static/images/pie_chart-investment-strategy.jpeg')
     else:
         amount = int(name)
         strategy1_list = l[0:2]
@@ -196,7 +195,7 @@ def result():
         stock3_price = info[2][2]
         stock4_price = info[3][2]
         stock1_money = info[0][1]
-        stock2_money= info[1][1]
+        stock2_money = info[1][1]
         stock3_money = info[2][1]
         stock4_money = info[3][1]
         stock5 = info[4][0]
@@ -208,16 +207,16 @@ def result():
         stock7_price = info[6][2]
         stock8_price = info[7][2]
         stock5_money = info[4][1]
-        stock6_money= info[5][1]
+        stock6_money = info[5][1]
         stock7_money = info[6][1]
         stock8_money = info[7][1]
-        return render_template('two_strategies.html', name=name, strategy1=strategy1, strategy2=strategy2, stock1=stock1, stock2=stock2,
-                               stock3=stock3, stock4=stock4, stock5=stock5, stock6=stock6, stock7=stock7, stock8=stock8,
-                               stock1_price=stock1_price, stock2_price=stock2_price, stock3_price=stock3_price, stock4_price=stock4_price,
-                               stock5_price=stock5_price, stock6_price=stock6_price, stock7_price=stock7_price, stock8_price=stock8_price,
-                               stock1_money=stock1_money, stock2_money=stock2_money, stock3_money=stock3_money, stock4_money=stock4_money,
-                               stock5_money=stock5_money, stock6_money=stock6_money, stock7_money=stock7_money, stock8_money=stock8_money,
-                               url='static/images/two_investment-strategy.jpeg', url_pie = 'static/images/pie_chart-two-investment-strategy.jpeg')
+        return render_template('two_strategies.html', name = name, strategy1 = strategy1, strategy2 = strategy2, stock1 = stock1, stock2 = stock2,
+                               stock3 = stock3, stock4 = stock4, stock5 = stock5, stock6 = stock6, stock7 = stock7, stock8 = stock8,
+                               stock1_price = stock1_price, stock2_price = stock2_price, stock3_price = stock3_price, stock4_price = stock4_price,
+                               stock5_price = stock5_price, stock6_price = stock6_price, stock7_price = stock7_price, stock8_price = stock8_price,
+                               stock1_money = stock1_money, stock2_money = stock2_money, stock3_money = stock3_money, stock4_money = stock4_money,
+                               stock5_money = stock5_money, stock6_money = stock6_money, stock7_money = stock7_money, stock8_money = stock8_money,
+                               url = 'static/images/two_investment-strategy.jpeg', url_pie = 'static/images/pie_chart-two-investment-strategy.jpeg')
 
 
 if __name__ == "__main__":
